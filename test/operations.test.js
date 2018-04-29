@@ -63,3 +63,7 @@ test('repeatTetOfAByBTimesToIdentity', () => {
 test('pen', () => {
     expect(funs.pen(2, 3)).toBe(65536);
 });
+
+test('hex', () => {
+    expect(funs.hex(2, 2)).toBe(4);
+});
