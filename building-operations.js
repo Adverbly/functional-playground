@@ -1,18 +1,22 @@
+import {applyItNTimes, suc} from "./axiomatic-operations";
 
-export let applyItNTimes = (it) => (n) => (val) => {
-    for(let i=0; i < n; i++){
-        val = it(val)
-    }
-    return val
-};
+// hyper 1 is addition.
+// Addition is a special case so it has it's own implementation. It is a special case because A and B interact
+// differently than for the repeated operations. The difference is that for addition, the scope of the A variable is
+// more than just the operation itself. A also sort of acts as a starting point from which B iterated succession
+// operations take place. This only happens for addition.
 
-// hyper 0 is successor
-export const suc = a => ++a;
+// first we pass in the function that we want to apply. We need the function that we pass in to have a signature of
+// Int -> Int to get the types to line up inside applyItNTimes. suc ignores the first term so we can call
+// with no argument to get the right signature.
+export const repeatSuc = applyItNTimes(suc());
 
-// hyper 1 is addition
-export const repeatSuc = applyItNTimes(suc);
+// next we make a function that will accept a number of times for our repeating successor function to be called, and
+// then pass that on to the curry chain in applyItNTimes
 export const repeatSucNTimes = (n) => repeatSuc(n);
-export const add = (a, b) => repeatSucNTimes(a)(b);
+
+// We want to repeat B times, and start off the chain with the value of A
+export const add = (a, b) => repeatSucNTimes(b)(a);
 
 // hyper 2 is multiplication
 export const plusA = (a) => repeatSucNTimes(a);

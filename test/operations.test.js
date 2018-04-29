@@ -1,13 +1,5 @@
 import * as funs from "../building-operations";
 
-test('suc', () => {
-    expect(funs.suc(0)).toBe(1);
-});
-
-test('suc', () => {
-    expect(funs.suc(1)).toBe(2);
-});
-
 test('repeatSucNTimes', () => {
     expect(funs.repeatSucNTimes(5)(2)).toBe(7);
 });
@@ -26,6 +18,10 @@ test('repeatAddNTimes', () => {
 
 test('mult', () => {
     expect(funs.mul(7,3)).toBe(21);
+});
+
+test('mult', () => {
+    expect(funs.mul(3,5)).toBe(15);
 });
 
 test('mulA', () => {
