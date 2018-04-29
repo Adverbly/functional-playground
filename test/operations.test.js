@@ -1,11 +1,11 @@
-import * as funs from "../building-hyper-operations";
+import * as funs from "../building-operations";
 
-test('sucA', () => {
-    expect(funs.sucA(0)).toBe(1);
+test('suc', () => {
+    expect(funs.suc(0)).toBe(1);
 });
 
-test('sucA', () => {
-    expect(funs.sucA(1)).toBe(2);
+test('suc', () => {
+    expect(funs.suc(1)).toBe(2);
 });
 
 test('repeatSucNTimes', () => {
