@@ -19,6 +19,6 @@ let it = () => applyItNTimes(2);
 const applyItALot = itItNTimes(2)(it);
 
 const incIt = (it) => it + 1;
-const result = applyItALot(incIt)(1);
+const result = applyItALot(incIt)(0);
 
 console.log(result);

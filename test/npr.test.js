@@ -1,49 +1,69 @@
-import * as funs from "../non-primitive-recursive-attempt-2";
+import * as funs from "../building-hyper-operations";
 
-test('successor', () => {
-    expect(funs.inc(0)).toBe(1);
+test('sucA', () => {
+    expect(funs.sucA(0)).toBe(1);
 });
 
-test('successor', () => {
-    expect(funs.inc(1)).toBe(2);
+test('sucA', () => {
+    expect(funs.sucA(1)).toBe(2);
 });
 
-test('currySuc', () => {
-    expect(funs.currySuc(3)(6)).toBe(7);
-});
-
-test('suc', () => {
-    expect(funs.suc(3,5)).toBe(6);
-});
-
-test('suc', () => {
-    expect(funs.suc(0,0)).toBe(1);
-});
-
-test('curryAdd', () => {
-    expect(funs.curryAdd(3)(4)).toBe(7);
+test('repeatSucNTimes', () => {
+    expect(funs.repeatSucNTimes(5)(2)).toBe(7);
 });
 
 test('add', () => {
     expect(funs.add(53, 21)).toBe(74);
 });
 
-test('add', () => {
-    expect(funs.add(0, 0)).toBe(0);
+test('plusA', () => {
+    expect(funs.plusA(4)(2)).toBe(6);
 });
 
-test('curryMul', () => {
-    expect(funs.curryMul(3)(5)(0)).toBe(15);
-});
-
-test('mult', () => {
-    expect(funs.mul(7,3)).toBe(21);
-});
-
-test('curryExp', () => {
-    expect(funs.curryExp(3)(3)(0)).toBe(27);
+test('repeatAddNTimes', () => {
+    expect(funs.repeatAddOfAByBTimes(3)(5)(0)).toBe(15);
 });
 
 test('mult', () => {
     expect(funs.mul(7,3)).toBe(21);
+});
+
+test('mulA', () => {
+    expect(funs.mulA(3)(3)).toBe(9);
+});
+
+test('repeatMulOfAByBTimesToIdentity', () => {
+    expect(funs.repeatMulOfAByBTimesToIdentity(3)(3)).toBe(27);
+});
+
+test('exp', () => {
+    expect(funs.exp(3,4)).toBe(81);
+});
+
+test('expA', () => {
+    expect(funs.expA(2)(5)).toBe(32);
+});
+
+test('repeatExpOfAByBTimesToIdentity', () => {
+    expect(funs.repeatExpOfAByBTimesToIdentity(5)(2)).toBe(3125);
+});
+
+test('repeatExpOfAByBTimesToIdentity', () => {
+    expect(funs.repeatExpOfAByBTimesToIdentity(2)(4)).toBe(65536);
+});
+
+test('tet', () => {
+    expect(funs.tet(4,2)).toBe(256);
+});
+
+test('tetA', () => {
+    expect(funs.tetA(4)(2)).toBe(256);
+});
+
+test('repeatTetOfAByBTimesToIdentity', () => {
+    expect(funs.repeatTetOfAByBTimesToIdentity(2)(3)).toBe(65536);
+});
+
+test('pen', () => {
+    expect(funs.pen(2, 3)).toBe(65536);
 });
