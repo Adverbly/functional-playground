@@ -1,4 +1,4 @@
-# Implementing the hyper operator from the ground up
+# Implementing the Hyper Operator from the ground up :rocket:
 
 Functional composition is pretty in right now. I learn by doing and explaining so lets do some of that.
 
