@@ -1,8 +1,7 @@
 {
-  "name": "mathplayground",
+  "name": "compose-hyper",
   "version": "1.0.0",
-  "description": "",
-  "main": "exponentiation.js",
+  "description": "Composition of the hyper operator, using only ++, --, and a single iteration statement(e.g. for/while).",
   "directories": {
     "test": "test"
   },
@@ -22,8 +21,8 @@
     "type": "git",
     "url": "git+https://github.com/Adverbly/functional-playground.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "George Patrick Montgomery",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Adverbly/functional-playground/issues"
   },

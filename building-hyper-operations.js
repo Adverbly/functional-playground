@@ -9,7 +9,9 @@ export let hyper = (n, a, b) => {
     if (n === 1) {
         return add(a, b)
     }
-    return hyperNFromMul(n - 2, a, b);
+    n--;
+    n--;
+    return hyperNFromMul(n, a, b);
 };
 
 export let hyperNFromMul = (n, a, b) => {

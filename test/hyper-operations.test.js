@@ -8,6 +8,10 @@ test('h1', () => {
     expect(funs.hyper(1,25,13)).toBe(38);
 });
 
+test('h1', () => {
+    expect(funs.hyper(1,1,1)).toBe(2);
+});
+
 test('h2', () => {
     expect(funs.hyper(2,5,3)).toBe(15);
 });
