@@ -59,7 +59,7 @@ Repeating something means doing the same thing over and over again. This means w
 (f, Int) -> ... 
 ```
 Hold on here! Don't those fancy function people prefer passing these one at a time? Let's do that instead.
-```$xslt
+```js
 f -> Int -> ... 
 ```
 What about the output? Well, ultimately, are going to be dealing with integers, so we want a number to come out of this. We might also want a number to start with as input(another Int). So our new types are:
@@ -67,7 +67,7 @@ What about the output? Well, ultimately, are going to be dealing with integers, 
 f -> Int -> Int -> Int
 ``` 
 The implementation is pretty simple:
-```$xslt
+```js
 export let applyItNTimes = (it) => (n) => (val) => {
     for(let i=0; i < n; i++){
         val = it(val)
@@ -77,22 +77,22 @@ export let applyItNTimes = (it) => (n) => (val) => {
 ```
 
 Okay so how would we use this to do addition? Well, the first input we need is a function. Let's make our successor(increment) function:
-```$xslt
+```js
 const inc = (a) => a++
 ```
 next we make a function that will accept a number of times for our repeating successor function to be called, and then pass that on to the curry chain in applyItNTimes
-```$xslt
+```js
 const repeatInc = applyItNTimes(inc);
 ```
 Okay, let's go for add now. We want to start with one number(`B`), and then repeat our inc call `A` times. So `A` needs to be next in the curry chain, and then we start it off with `B`.
-```$xslt
+```js
 const add = (a, b) => repeatInc(a)(b)
 expect(add(3,42)).toBe(45)
 ```
 Nice! Okay on to multiplication. Before we tackle this, let's unpack multiplication the same way as we did for addition. If addition was repeatedly "inc" `B` times, starting from A, is there a way we can compose multiplication from repeated application of another function? Yes! For multiplication, we want to repeatedly "add A" `B` times, starting from 0. 
 
 First step: Make a function to "add A". We'll accept `A` as an input and return a function that will add A: `Int -> Int -> Int`. We can make this by reusing our repeatInc function above by repeating `A` increments.
-```$xslt
+```js
 const addA = (a) => repeatInc(a)
 ```
 
