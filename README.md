@@ -27,7 +27,7 @@ Okay let's have at it.
 ### Add
 This one's easy because one for loop is all we need. 
 
-```
+```js
 const add = (a,b) => {
     let sum = a;
     for (let i = 0; i < b; i++){
@@ -40,7 +40,7 @@ const add = (a,b) => {
 ### Multiply
 Well shit. We already used up our for loop. If we had two loops, we could do something like:
 
-```
+```js
 const multiply = (a,b) => {
     let sum = 0;
     for (let i = 0; i < a; i++){
@@ -55,7 +55,7 @@ So we'll need some way to nest/reuse a loop.
 
 ## Abstracting Repetition 
 Repeating something means doing the same thing over and over again. This means we'll need a way to specify what we want to do, as well as the number of times we want to do it(an Int). So our input needs to start with something like:
-```
+```js
 (f, Int) -> ... 
 ```
 Hold on here! Don't those fancy function people prefer passing these one at a time? Let's do that instead.
