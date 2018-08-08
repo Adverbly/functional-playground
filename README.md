@@ -173,7 +173,7 @@ Okay so what about if we wanted to abstract even further?
 
 The generalized operation is known as the *hyper* operator. The hyper operator, unlike binary operators like + or *, who take only an `a` and a `b`, takes a third number as input(`n`), which does not determine the initial values to be input into the operation, but rather determines which operation to use. Where to consider the 'starting' operation of the hyper operator(at n=0) is a bit arbitrary, but for now let's consider n=0 to be ++, and n=1 to be +, and n=2 to be *, and so on and so forth as we showed above. 
 
-## TODO  
+## Hyper  
 If we look back on how we crafted each operation by using the previous operation, we can see a clearly repeated pattern. We take a binary operation, build a partially applied version, pass that partially applied operation into our abstracted applyItNTimes repeater, then wrap our newly created operation in a curry, an identity, and finally a binary version which can be used as the next input. Now, if we want to repeat this composition process `n` times, we will have to find some way to once again make use of our repeater.
 
 "Hold on, I thought the repeater used numbers as inputs".
