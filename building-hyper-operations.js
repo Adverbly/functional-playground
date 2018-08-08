@@ -14,30 +14,34 @@ export let hyper = (n, a, b) => {
     return hyperNFromMul(n, a, b);
 };
 
+// this is a factory that is needed to bind the current operation in a closure.
+// Without it, the binary operations will have conflicting scopes
+const binaryCurry = (op) => (a) => (b) => op(a, b);
+
+// here we basically repeat the process that we used when generating operations, reusing the applyItNTimes method
+// The difference is that rather than building a pipe for numbers to go through, we are instead building a pipe for
+// operations to go through. Once consumed, the pipe will output the final binary operation that we need.
+// The type signature that we need to pass to applyItNTimes for this to work is A, B -> A, B
+const nextOperation = (binary) => {
+    const opA = binaryCurry(binary);
+    const repeatOpOfA = (a) => applyItNTimes(opA(a));
+    const repeatOpOfAByBTimes = (a) => (b) => repeatOpOfA(a)(b);
+    const repeatOpOfAByBTimesToIdentity = (a) => (b) => repeatOpOfAByBTimes(a)(b)(1);
+    return (a, b) => repeatOpOfAByBTimesToIdentity(a)(b);
+};
+
 export let hyperNFromMul = (n, a, b) => {
-    // this is a factory that is needed to bind the current operation in a closure.
-    // Without it, the binary operations will have conflicting scopes
-    const currentCurriedFactory = (op) => (a) => (b) => op(a, b);
 
-    // here we basically repeat the process that we used when generating operations, reusing the applyItNTimes method
-    // The difference is that rather than building a pipe for numbers to go through, we are instead building a pipe for
-    // operations to go through. Once consumed, the pipe will output the final binary operation that we need.
-    // The type signature that we need to pass to applyItNTimes for this to work is A, B -> A, B
-    let hyper = applyItNTimes(
-        (binary) => {
-            const opA = currentCurriedFactory(binary);
-            const repeatOpOfA = (a) => applyItNTimes(opA(a));
-            const repeatOpOfAByBTimes = (a) => (b) => repeatOpOfA(a)(b);
-            const repeatOpOfAByBTimesToIdentity = (a) => (b) => repeatOpOfAByBTimes(a)(b)(1);
-            return (a, b) => repeatOpOfAByBTimesToIdentity(a)(b);
-        }
-    );
-
-    // we supply the number of iterations to make. Each iteration will build the next hyper operation.
+    // Complete the pipeline for applyItNTimes.
+    // First comes the 'it'
+    let hyper = applyItNTimes(nextOperation);
+    // Then we supply the number of iterations to make. Each iteration will build the next hyper operation.
     const hyperN = hyper(n);
 
     // Just like we had to provide the identity when getting started with our applyItNTimes, we also need to supply the
     // starting point for the hyper operation. In this case the starting point is an operation(mul) rather than a number
     const hyperNFromMul = hyperN(mul);
+
+    // call our new operation and return the result
     return hyperNFromMul(a, b)
 };
